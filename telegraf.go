@@ -1,4 +1,4 @@
-package ovpnstats2influxdb
+package main
 
 import (
 	"fmt"

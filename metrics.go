@@ -1,4 +1,4 @@
-package ovpnstats2influxdb
+package main
 
 import (
 	"github.com/thor77/ovpnstats"
@@ -11,5 +11,5 @@ type Metric struct {
 }
 
 func createMetrics(clients []ovpnstats.ClientInfo, routes []ovpnstats.RoutingInfo) []Metric {
-	return []Metric{Metric{map[string]interface{}{"clients": len(clients), "routes": len(routes)}, nil}}
+	return []Metric{{map[string]interface{}{"clients": len(clients), "routes": len(routes)}, nil}}
 }
