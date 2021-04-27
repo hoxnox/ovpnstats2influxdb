@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/thor77/ovpnstats"
 )
 
-// RunTelegraf prints Telegraf-compatible metric-output to stdout
-func RunTelegraf(path string) error {
-	clients, routes, err := ovpnstats.ParseStatusFile(path)
+// runTelegraf prints Telegraf-compatible metric-output to stdout
+func runTelegraf(path string) error {
+	clients, routes, err := ParseStatusFile(path)
 	if err != nil {
 		return err
 	}
@@ -35,6 +33,18 @@ func RunTelegraf(path string) error {
 
 	// output line protocol lines
 	for _, point := range clientPoints {
+		fmt.Println(point.String())
+	}
+
+	routingMetrics := createRoutingMetrics(routes)
+
+	routingPoints, err := createBatchPoints("openvpn", routingMetrics)
+	if err != nil {
+		return err
+	}
+
+	// output line protocol lines
+	for _, point := range routingPoints {
 		fmt.Println(point.String())
 	}
 	return nil

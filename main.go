@@ -14,7 +14,7 @@ func main() {
 	if *pathFlagPointer == "" {
 		log.Fatal("No path provided")
 	}
-	err := RunTelegraf(*pathFlagPointer)
+	err := runTelegraf(*pathFlagPointer)
 	if err != nil {
 		log.Fatal(err)
 	}
