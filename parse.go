@@ -48,7 +48,7 @@ func parseClientListEntry(line string) (ClientInfo, error) {
 	if err != nil {
 		return ClientInfo{}, err
 	}
-	connectedSince, err := time.Parse(time.ANSIC, parts[4])
+	connectedSince, err := time.Parse("2006-01-02 15:04:05", parts[4])
 	if err != nil {
 		return ClientInfo{}, err
 	}
@@ -64,7 +64,7 @@ func parseClientListEntry(line string) (ClientInfo, error) {
 
 func parseRoutingTableEntry(line string) (RoutingInfo, error) {
 	parts := strings.Split(line, splitCharacter)
-	lastRef, err := time.Parse(time.ANSIC, parts[3])
+	lastRef, err := time.Parse("2006-01-02 15:04:05", parts[3])
 	if err != nil {
 		return RoutingInfo{}, err
 	}
